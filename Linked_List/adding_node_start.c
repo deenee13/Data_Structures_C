@@ -7,34 +7,31 @@ struct node{
  struct node* next;
 };
 
-
-// Global Declaration 
-struct node* head;
-
 // Function Declaration 
-void insert(int x);
-void print();
+struct node* insert(int x, struct node *head);
+struct node* print(struct node *head);
 
 // Function to insert node in the beginning of the linked list 
-void insert (int x)
+struct node* insert (int x, struct node *head)
 {
   struct node* temp = (struct node*) malloc(sizeof(struct node));
   temp->data = x;
   temp->next = head;
   head = temp;
+  return (head);
 }
 
 // Function to print the linked list
-void print()
+struct node* print(struct node *head)
 {
-  struct node *temp = head;
   printf("List is:");
-  while (temp != NULL)
+  while (head != NULL)
   {
-    printf("%d", temp->data);
-    temp = temp->next;
+    printf("%d ", head->data);
+    head = head->next;
   }
   printf("\n");
+  return (head);
 
 } 
 
@@ -43,7 +40,7 @@ int main()
   int n;
   int x;
   int i;
-  head = NULL; // Empty list  
+  struct node* head = NULL; // Empty List
   printf("How many numbers\n");
   scanf("%d",&n);
 
@@ -51,7 +48,7 @@ int main()
   {
     printf("Enter the number you want to insert in the list\n");
     scanf("%d", &x);
-    insert(x);
-    print();
+    head = insert(x, head);
+    head = print(head);
   }
 }
