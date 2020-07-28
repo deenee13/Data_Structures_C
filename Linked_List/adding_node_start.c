@@ -9,7 +9,7 @@ struct node{
 
 // Function Declaration 
 struct node* insert(int x, struct node *head);
-struct node* print(struct node *head);
+void print(struct node *head);
 
 // Function to insert node in the beginning of the linked list 
 struct node* insert (int x, struct node *head)
@@ -22,8 +22,9 @@ struct node* insert (int x, struct node *head)
 }
 
 // Function to print the linked list
-struct node* print(struct node *head)
+void print(struct node *head)
 {
+  //struct node *temp = head;
   printf("List is:");
   while (head != NULL)
   {
@@ -31,7 +32,7 @@ struct node* print(struct node *head)
     head = head->next;
   }
   printf("\n");
-  return (head);
+
 
 } 
 
@@ -49,6 +50,6 @@ int main()
     printf("Enter the number you want to insert in the list\n");
     scanf("%d", &x);
     head = insert(x, head);
-    head = print(head);
+    print(head);
   }
 }
