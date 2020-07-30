@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 
 struct node{
@@ -10,6 +11,7 @@ struct node{
 // Function Declaration 
 struct node* insert(int x, struct node *head);
 void print(struct node *head);
+bool hascycle(struct node *head); 
 
 // Function to insert node in the beginning of the linked list 
 struct node* insert (int x, struct node *head)
@@ -21,10 +23,43 @@ struct node* insert (int x, struct node *head)
   return (head);
 }
 
+// Function to see whether there is loop in linked list 
+bool hascycle(struct node *head)
+{
+  
+  struct node *slow;
+  struct node *fast;
+
+  if(head == NULL || head->next == NULL)
+  {
+  
+    printf("False");
+    return false;
+  }
+  
+  slow = head;
+  fast = head->next;
+
+  while( slow != fast)
+  {
+    printf("In while loop\n");
+    if(fast == NULL || fast->next == NULL)
+    {
+      printf("False");
+      return false;
+
+    }
+    slow = slow->next;
+    fast = fast->next->next;
+  }
+  printf("True");
+  return true;
+}
+
 // Function to print the linked list
 void print(struct node *head)
 {
-  //struct node *temp = head;
+
   printf("List is:");
   while (head != NULL)
   {
@@ -52,4 +87,6 @@ int main()
     head = insert(x, head);
     print(head);
   }
+  hascycle(head);
+  //printf("Result is %s", result);
 }
