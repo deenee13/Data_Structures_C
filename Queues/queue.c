@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 
 /*
@@ -14,41 +15,89 @@
 **/
 
 
+/* Implementation of queue using linked list */
 
-int front = -1;
-int rear = -1;
+struct node{
+    int data;
+    struct node* next;
+};
+
+// Global Declaration 
+struct node* front = NULL;
+struct node* rear = NULL;
+
+
+
+// Function Declaration
+void enqueue(int x); // To add element from the queue
+void dequeue(); // To remove element from the queue
+void print(); // Function to print the linked list 
+
+
+
+void dequeue()
+{
+    // It is created to delete the memory from heap
+    struct node* temp = front;
+
+    if(front == NULL)
+    {
+        return;
+    }
+    if(front == rear)
+    {
+        front = NULL;
+        rear = NULL;
+    }
+    else
+    {
+        front = front->next;
+    }
+    
+    free(temp);
+}
+
+
+void enqueue(int x)
+{
+    struct node* temp = (struct node*)malloc(sizeof(struct node*));
+    temp->data = x;
+    temp->next = NULL;
+
+    if(front == NULL && rear == NULL)
+    {
+        rear = temp;
+        front = temp;
+        return;
+    }
+
+    // Try to implement this logic on paper and it will be more clear
+    rear->next = temp;
+    rear = temp;
+}
+
+// Function to print the linked list 
+void print()
+{
+    struct node* temp = front;
+    printf("List:");
+    while(front != NULL)
+    {
+        printf(" %d ", front->data);
+        front = front->next;
+    }
+    printf("\n");
+
+}
 
 
 int main()
 {
-    unsigned int num_length = 0;
-    printf("Enter the length of the queue:");
-    scanf(" %d ", &num_length);
-}
-
-
-
-// Function to check whether queue is full or not
-bool isempty()
-{
-    if(front == -1 && rear == -1)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }  
-}
-
-// 
-
-// Function to Enqueue data in the queue
-
-int enqueue(int x)
-{
-    if (isfull() == true)
-    {
-        return;
-    }
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+    enqueue(50);
+    dequeue();
+    print(); // Expected output = 20 30 40 50 
 }
