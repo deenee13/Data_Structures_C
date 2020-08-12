@@ -28,7 +28,7 @@ struct bstnode* new_node(int data);
 bool  search(struct bstnode* root, int data);
 
 // Function to find minimun value in the tree
-int find_min(struct bstnode* root);          
+struct bstnode* find_min(struct bstnode* root);          
 
 // Function to find maximum value in the tree
 int find_max(struct bstnode* root);                         

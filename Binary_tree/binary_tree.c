@@ -338,7 +338,7 @@ int find_max(struct bstnode* root)
 }
 
 // Function to find minimun value in the tree
-int find_min(struct bstnode* root)
+struct bstnode* find_min(struct bstnode* root)
 {
     if(root == NULL)
     {
@@ -346,7 +346,7 @@ int find_min(struct bstnode* root)
     }
     else if (root->left == NULL)
     {
-        return (root->data);
+        return (root);
     }
 
     // Search in left subtree
@@ -410,6 +410,7 @@ struct bstnode* insert(int data, struct bstnode* root)
 int main()
 {
     struct bstnode* rootptr = NULL;  // To store address of root node
+    struct bstnode* num1 = NULL;
     int num;
     
     // Inserting element in the tree
@@ -418,9 +419,12 @@ int main()
     rootptr = insert(20,rootptr);
     rootptr = insert(8,rootptr);
     rootptr = insert(12,rootptr);
+    rootptr = insert(6,rootptr);
+    rootptr = insert(11,rootptr);
     rootptr = insert(17,rootptr);
     rootptr = insert(25,rootptr);
-    rootptr = insert(50,rootptr);
+    rootptr = insert(16,rootptr);
+    rootptr = insert(27,rootptr);
 
     printf("Enter the number to be searched:");
     scanf("%d",&num);
@@ -436,8 +440,8 @@ int main()
     }
 
     // Searching minimum element in the tree
-    num = find_min(rootptr);
-    printf("Minimum element in the tree is %d\n", num);
+    num1 = find_min(rootptr);
+    printf("Minimum element in the tree is %d\n", num1->data);
 
     // Searching maximum element in the tree
     num = find_max(rootptr);
@@ -464,4 +468,19 @@ int main()
     printf(" To know wether Binary Tree is Binary Search Tree\n");
     bool flag = is_binary_search_tree(rootptr);
     printf( "Is binary tree a Binary Search Tree: %d\n",flag);
+
+    rootptr = delete_node(rootptr,15);
+
+    printf("Enter the number to be searched:");
+    scanf("%d",&num);
+
+    // Searching element in the tree
+    if(search(rootptr,num) == true)
+    {
+        printf("Found\n");
+    }
+    else
+    {
+        printf("Not found\n");
+    }
 }

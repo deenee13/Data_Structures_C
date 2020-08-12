@@ -1,8 +1,32 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
+
+
+int main()
+{
+    int temp = 4;
+
+    int* arr[4];
+    arr[0] = &temp;
+
+    printf("value in array is: %d",*(arr[0]));
+    /*
+    for(int i=0;i<4;i++)
+    {
+        arr[i] = &temp[i];
+    }
+    */
+}
 
 
 
+
+
+
+
+
+#if 0
 void big_little_endian()
 {
     unsigned int value;
@@ -89,7 +113,7 @@ int main()
     int value = singleNumber1(arr, 5);
     printf("value: %d", value);
 }
-
+#endif 0
 
 
 /****************************************
@@ -99,9 +123,9 @@ int main()
 // Logic to swap endianess for future use
 //
 //
-/****************************************
+****************************************/
  
- 
+ /*
 unsigned int swap_endianess(unsigned int value)
 {
     char *ptr;
