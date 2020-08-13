@@ -39,6 +39,7 @@ void dequeue()
 {
     // It is created to delete the memory from heap
     struct node* temp = front;
+    int num;
 
     if(front == NULL)
     {
@@ -51,10 +52,12 @@ void dequeue()
     }
     else
     {
+        num = front->data;
         front = front->next;
     }
     
     free(temp);
+    printf("Value of num: %d ",num);
 }
 
 
