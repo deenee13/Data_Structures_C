@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "common.h"
+#include "queue.h"
 
 
 // Function to free the dyamically allocated memory 
@@ -48,7 +49,7 @@ void free_linkedlist(struct node** head, int edge)
 
 
 // Function to Traverse the Graph in Breadth Fisrst Search Algorithm
-void bfs(int i, struct node** head)
+void bfs(int i, struct node** head,int* visited)
 {
     printf("In to the BFS function\n");
     struct node** temp = head;
@@ -70,12 +71,12 @@ void bfs(int i, struct node** head)
         // Run the loop until that specific list reaches NULL
         while(p != NULL)
         {
-            if(visited[p->data] == 0)
+            if(*(visited + p->data) == 0)
             {
                 // Put the elements of the into the queue
                 enqueue(p->data);
 
-                visited[p->data] = 1;
+                *(visited + p->data) = 1;
             }
             // Move forward in the list
             p = p->next;
@@ -88,19 +89,19 @@ void bfs(int i, struct node** head)
 
 
 // function to traverse the graph in the Depth First Search Algorithm
-void dfs(int i, struct node** head)
+void dfs(int i, struct node** head, int* visited)
 {
     struct node** temp = head;
     struct node* p;
     printf("\n%d",i);
     p = *(temp + i);
-    visited[i] = 1;
+    *(visited + i) = 1;
     while(p != NULL)
     {
         i = p->data;
-        if(visited[i] == 0)
+        if(*(visited + i) == 0)
         {
-            dfs(i,temp);
+            dfs(i,temp,visited);
         }
         p = p->next;
     }
@@ -118,9 +119,7 @@ struct node** read_graph()
     int num;
     int count;
 
-    // Pointer to an array which will store the head of the linked list
     struct node** temp;
-    temp = (struct node**) malloc((node + 1)*sizeof(struct node*));
 
     // To take the number of nodes
     printf("Number of nodes in the graph are:");
@@ -129,6 +128,12 @@ struct node** read_graph()
     //  To take the number of edges
     printf("Number of edges in the graph are:");
     scanf("%d",&edge);
+
+    // Pointer to an array which will store the head of the linked list
+    temp = (struct node**) malloc((node + 1)*sizeof(struct node*));
+
+    // Array of visited nodes
+    int visited[node + 1];
 
     // Array to store the link of the nodes
     int links[2*edge];
@@ -147,7 +152,7 @@ struct node** read_graph()
 
 
     // Initializing the array of Visited to Null
-    for(int j=0; j < 9; j++ )
+    for(int j=0; j < (node + 1); j++ )
     {
         visited[j] = 0;
         //printf("In to the for loop of visited array\n");
@@ -170,7 +175,7 @@ struct node** read_graph()
         if(visited[i] == 0)
         {
             printf("debug1\n");
-            bfs(i,temp);
+            bfs(i,temp,visited);
             count++;
         }
     }
