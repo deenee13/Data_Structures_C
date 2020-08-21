@@ -19,4 +19,5 @@ struct node** insert_node(int vi, int vj, struct node** head);
 void dfs(int i, struct node** head, int* visited);
 void bfs(int i, struct node** head, int* visited);
 void print(struct node*head);
-void free_linkedlist(struct node** head, int edge);
+void free_linkedlist(struct node** head, int node);
+void scale_down(int* link, int edge);

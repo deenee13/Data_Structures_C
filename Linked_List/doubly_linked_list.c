@@ -44,8 +44,8 @@ struct node* insert_head(int x, struct node* head)
     }
 
     /* Due to this line above if statement is important 
-     as this is not there in sinle linked list above if statement
-     in sinlge linkes list can be eliminated */
+     as this is not there in sinle linked list. Above if statement
+     in single linked list can be eliminated */
     head->prev = newnode;
 
     newnode->next = head;

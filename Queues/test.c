@@ -5,18 +5,12 @@
 
 int main()
 {
-    int temp = 4;
+    float temp = 6.6;
+    int i = 0;
 
-    int* arr[4];
-    arr[0] = &temp;
+    i = (int)temp;
+    printf("value of temp is %d",i);
 
-    printf("value in array is: %d",*(arr[0]));
-    /*
-    for(int i=0;i<4;i++)
-    {
-        arr[i] = &temp[i];
-    }
-    */
 }
 
 

@@ -45,8 +45,6 @@ struct node* insert( int data, int position, struct node *head)
     temp1->next = temp2->next;
     temp2->next = temp1;  
     return(head);
-
-
 }
 
 // Function to delete a node at nth location  

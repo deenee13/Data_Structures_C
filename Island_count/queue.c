@@ -1,4 +1,4 @@
-#include "common.h"
+#include "queue.h"
 
 /* Function  for Queue*/
 
@@ -19,7 +19,6 @@ void dequeue()
     {
         front = front->next;
     }
-
     free(temp);
 }
 

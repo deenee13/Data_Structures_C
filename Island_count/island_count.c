@@ -12,7 +12,7 @@
  * for the above example array e looks like e = {2,3,1,2,1,4,2,5,4,5,6,7}
  *
  * The first pair of elements is 2,3 which means that node 2 and 3 are connected together and so on. Hence we
- * can say in total there are total 2*(edge) elements in the array.
+ * can say in total there are 2*(edge) elements in the array.
  *
  * The goal of the function is to return the number of islands in the graph. An island is a group of nodes that are
  * connected only to themselves and not to any other nodes in the graph.
@@ -20,10 +20,6 @@
 
 
 
-//<TODO: To fix this error>
-/**
- * As node over here don't start from 0 Hence need to build logic to get it
- * done**/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,11 +27,24 @@
 #include "queue.h"
 
 
+
+
+// Function to start the array of links from the 0
+void scale_down(int* link, int edge)
+{
+    int length = 2*edge;
+    for(int i=0; i<length; i++)
+    {
+        *(link + i) = (*(link + i) - 1);
+        ////printf("%dth value in the array of link is:%d\n",i,*(link + i));
+    }
+}
+
 // Function to free the dyamically allocated memory 
-void free_linkedlist(struct node** head, int edge)
+void free_linkedlist(struct node** head, int node)
 {
     struct node* p;
-    for(int i=0; i<2*edge; i++)
+    for(int i=0; i<node; i++)
     {
         p = *(head + i);
         while(p != NULL)
@@ -48,21 +57,21 @@ void free_linkedlist(struct node** head, int edge)
 }
 
 
-// Function to Traverse the Graph in Breadth Fisrst Search Algorithm
+// Function to Traverse the Graph in Breadth First Search Algorithm
 void bfs(int i, struct node** head,int* visited)
 {
-    printf("In to the BFS function\n");
+    ////printf("In to the BFS function\n");
     struct node** temp = head;
     struct node*p;
 
     // Insert the element in the Queue
     enqueue(i);
-    visited[i] = 1;
+    *(visited + i) = 1;
     while(!isempty())
     {
         ////printf("Into while loop\n");
         i = peek();
-        printf("%d\n",i);
+        ////printf("%d\n",i);
         dequeue();
 
         // Pass the address of the specific head to p
@@ -73,11 +82,13 @@ void bfs(int i, struct node** head,int* visited)
         {
             if(*(visited + p->data) == 0)
             {
-                // Put the elements of the into the queue
+                // Put the elements into the queue
                 enqueue(p->data);
 
+                // Mark it visited in the 
                 *(visited + p->data) = 1;
             }
+
             // Move forward in the list
             p = p->next;
         }
@@ -119,6 +130,7 @@ struct node** read_graph()
     int num;
     int count;
 
+    // Pointer to an array of pointers which will store the head of the linked list
     struct node** temp;
 
     // To take the number of nodes
@@ -133,7 +145,7 @@ struct node** read_graph()
     temp = (struct node**) malloc((node + 1)*sizeof(struct node*));
 
     // Array of visited nodes
-    int visited[node + 1];
+    int visited[node];
 
     // Array to store the link of the nodes
     int links[2*edge];
@@ -143,20 +155,17 @@ struct node** read_graph()
         scanf("%d",&links[i]);
     }
 
-    // Initializing the array of Pointer's to NULL
+    // Function to scale down the array of links as it starts from 1
+    scale_down(links,edge);
+
+    // Initializing the array of Pointer's and visited to 0
     for(int j=0; j < node; j++ )
     {
         *(temp + j) = NULL;
-        //printf("In to the for loop of aaray of pointers\n");
-    }
-
-
-    // Initializing the array of Visited to Null
-    for(int j=0; j < (node + 1); j++ )
-    {
         visited[j] = 0;
-        //printf("In to the for loop of visited array\n");
+        ////printf("In to the for loop of array of pointers\n");
     }
+
 
     // For loop used to connect all the links to the particular node using linked list
     for(int i=0; i < (2*edge); i = i+2)
@@ -170,11 +179,11 @@ struct node** read_graph()
 
     // Going through the Link array to traverse the list
     // Change the logic again to 0 once solved the 0 error
-    for(int i=1; i <= node; i++)
+    for(int i=0; i < node; i++)
     {
         if(visited[i] == 0)
         {
-            printf("debug1\n");
+            ////printf("debug1\n");
             bfs(i,temp,visited);
             count++;
         }
@@ -187,7 +196,7 @@ struct node** read_graph()
     scanf("%d",&num);
     if(num == 1)
     {
-        free_linkedlist(temp, edge);
+        free_linkedlist(temp, node);
     }
     
     return(temp);
