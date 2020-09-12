@@ -6,17 +6,14 @@ void dequeue()
 {
     // It is created to delete the memory from heap
     struct node* temp = front;
-    if(front == NULL)
-    {
+    if (front == NULL) {
         return;
     }
-    if(front == rear)
-    {
+    if (front == rear) {
         front = NULL;
         rear = NULL;
     }
-    else
-    {
+    else{
         front = front->next;
     }
     free(temp);

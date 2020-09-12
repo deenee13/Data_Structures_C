@@ -287,7 +287,11 @@ void enqueue(int x)
     }
 
     // Try to implement this logic on paper and it will be more clear
+
+    // First into the next column of rear put the value address of the temp
     rear->next = temp;
+
+    // Then Update the address of the rear
     rear = temp;
 }
 
