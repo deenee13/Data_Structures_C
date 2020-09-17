@@ -8,7 +8,7 @@ struct node{
     struct node* next;
 };
 
-//int visited[9];
+// int visited[9];
 
 
 

@@ -1,5 +1,5 @@
 // Inserting a node at Nth Position in linked list, deleting Nth
-// node and also reversing the linked list 
+// node and also reversing the linked list
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -119,6 +119,9 @@ struct node* delete(int position, struct node *head) {
     }
 
     struct node* temp2 = temp1->next;  // To go ot the nth node
+    // Saving the address of the (n+1)th address which is in
+    // next field of the current node to the next field of the
+    // (n-1)th node and then deleting the current node
     temp1->next = temp2->next;  // (n + 1)th node
 
     // To free the space
@@ -126,7 +129,7 @@ struct node* delete(int position, struct node *head) {
     return(head);
 }
 
-// Function to reverse a linked list
+// Function to reverse a linked list iterative approach
 struct node* reverse(struct node *head) {
     struct node* current;
     // To store the value of the previous node to reverse the list
@@ -191,8 +194,6 @@ int main() {
     int position;
 
     struct node *head = NULL;    // empty list
-
-    
     head = insert_tail(2, head);    // list: 2
     head = insert_tail(3, head);    // list: 2,3
     head = insert_tail(4, head);    // list: 2,3,4

@@ -83,7 +83,7 @@ int selection_sort(int *arr, const int arr_value) {
     for (int i=0; i <= (arr_value - 2); i++) {
         // Loop to find the minimum element from the +1 location from i
         for (int j=(i+1); j <= (arr_value - 1); j++) {
-            // If we found the minimum element replce it with
+            // If we found the minimum element replace it with
             // the index of the imin
             if ( *(arr+j) < *(arr+i) ) {
                 imin = j;
@@ -111,8 +111,11 @@ int insertion_sort(int *arr, const int arr_value) {
         return -EINVAL;
     }
     for (int i=1; i <= (arr_value - 1); i++) {
+        // We are saving the value of it to use it in the while loop
         value = *(arr+i);
         hole = i;
+        // This while loop compares the value of i with all the
+        // elements left of it
         while (hole > 0 && *(arr+(hole-1)) > value) {
             //// printf("Value of whole in while loop is %d\n", hole);
             // Swapping algorithm

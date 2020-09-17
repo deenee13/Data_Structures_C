@@ -29,7 +29,7 @@ int bubble_sort(int *arr, const int arr_value);
  *
  * This API is will sort the array using the Insertion sort algorithm.
  * In which it divides the array into two parts. Sorted and Unsorted part.
- * In which we will pick up each element from the unsorted part and by
+ * In which we will pick up each element from the unsorted part and by merging
  * it with the sorted part elements we will arrange the sorted list  
  * 
  * @param arr

@@ -11,7 +11,7 @@ struct node{
 };
 
 // Function Declaration
-struct node* insert_head(int data, struct node* head); // Insert node at head
+struct node* insert_head(int data, struct node* head);  // Insert node at head
 struct node* get_new_node(int x);   // Function to create a new node
 void print_forward(struct node *head);  // Print Function in forward directiom
 void print_reverse(struct node *head);  // Print function in reverse direction
@@ -19,8 +19,7 @@ void print_reverse(struct node *head);  // Print function in reverse direction
 
 
 // Function to create new node
-struct node* get_new_node(int x)
-{
+struct node* get_new_node(int x) {
     struct node* newnode = (struct node*) malloc(sizeof(struct node));
     newnode->data = x;
     newnode->next = NULL;
@@ -29,16 +28,16 @@ struct node* get_new_node(int x)
 }
 
 // Function to insert new node at head
-struct node* insert_head(int x, struct node* head)
-{
-    struct node* newnode; 
+struct node* insert_head(int x, struct node* head) {
+    struct node* newnode;
     newnode = get_new_node(x);
-    ////printf("In insert head function\n");
+    ////  printf("In insert head function\n");
 
-    // This if statement is important over here as if the list is empty then we will 
-    // access the prev location first in this function which will give segmentation fault
-    if(head == NULL)
-    {
+    // This if statement is important over here as if the
+    // list is empty then we will
+    // access the prev location first in this function
+    // which will give segmentation fault
+    if (head == NULL) {
         head = newnode;
         return(head);
     }
@@ -50,39 +49,31 @@ struct node* insert_head(int x, struct node* head)
 
     newnode->next = head;
     head = newnode;
-    ////printf("Out of Insert head function\n");
+    //// printf("Out of Insert head function\n");
     return(head);
 }
 
-// Function to print linked list in forward direction 
-void print_forward(struct node* head)
-{
-
+// Function to print linked list in forward direction
+void print_forward(struct node* head) {
   printf("Forward List is: ");
-  while (head != NULL)
-  {
+  while (head != NULL) {
     printf("%d ", head->data);
     head = head->next;
   }
   printf("\n");
-} 
+}
 
-// Function to print linked list in reverse direction 
-void print_reverse(struct node* head)
-{
-    if(head == NULL)
-    {
+// Function to print linked list in reverse direction
+void print_reverse(struct node* head) {
+    if (head == NULL) {
         return;
     }
-    
-    while (head->next != NULL)
-    {
+    while (head->next != NULL) {
         head = head->next;
     }
 
     printf("Reverse List is: ");
-    while (head != NULL)
-    {
+    while (head != NULL) {
         printf("%d ", head->data);
         head = head->prev;
     }
@@ -91,14 +82,12 @@ void print_reverse(struct node* head)
 
 
 
-int main()
-{
+int main() {
     struct node* head = NULL;   // Why is this statement so important
-    //printf("Addres of the *node head: %d\n",head);
-    head = insert_head(1,head); // Expected output: 1
-    head = insert_head(2,head); // Expected output: 2 1
-    head = insert_head(3,head); // Expected output: 3 2 1
+    // printf("Addres of the *node head: %d\n",head);
+    head = insert_head(1, head);  // Expected output: 1
+    head = insert_head(2, head);  // Expected output: 2 1
+    head = insert_head(3, head);  // Expected output: 3 2 1
     print_forward(head);        // Expected output: 3 2 1
     print_reverse(head);        // Expected output: 1 2 3
-
 }

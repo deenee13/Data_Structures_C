@@ -22,53 +22,45 @@ struct node{
     struct node* next;
 };
 
-// Global Declaration 
+// Global Declaration
 struct node* front = NULL;
 struct node* rear = NULL;
 
 
 
 // Function Declaration
-void enqueue(int x); // To add element from the queue
-void dequeue(); // To remove element from the queue
-void print(); // Function to print the linked list 
+void enqueue(int x);  // To add element from the queue
+void dequeue();  // To remove element from the queue
+void print();  // Function to print the linked list
 
 
 
-void dequeue()
-{
+void dequeue() {
     // It is created to delete the memory from heap
     struct node* temp = front;
     int num;
 
-    if(front == NULL)
-    {
+    if (front == NULL) {
         return;
     }
-    if(front == rear)
-    {
+    if (front == rear) {
         front = NULL;
         rear = NULL;
-    }
-    else
-    {
+    } else {
         num = front->data;
         front = front->next;
     }
-    
     free(temp);
-    printf("Value of num: %d ",num);
+    printf("Value of num: %d ", num);
 }
 
 
-void enqueue(int x)
-{
+void enqueue(int x) {
     struct node* temp = (struct node*)malloc(sizeof(struct node*));
     temp->data = x;
     temp->next = NULL;
 
-    if(front == NULL && rear == NULL)
-    {
+    if (front == NULL && rear == NULL) {
         rear = temp;
         front = temp;
         return;
@@ -79,28 +71,24 @@ void enqueue(int x)
     rear = temp;
 }
 
-// Function to print the linked list 
-void print()
-{
+// Function to print the linked list
+void print() {
     struct node* temp = front;
     printf("List:");
-    while(front != NULL)
-    {
+    while (front != NULL) {
         printf(" %d ", front->data);
         front = front->next;
     }
     printf("\n");
-
 }
 
 
-int main()
-{
+int main() {
     enqueue(10);
     enqueue(20);
     enqueue(30);
     enqueue(40);
     enqueue(50);
     dequeue();
-    print(); // Expected output = 20 30 40 50 
+    print();  // Expected output = 20 30 40 50
 }
