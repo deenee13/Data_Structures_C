@@ -84,14 +84,14 @@ struct node* insert(int data, int position, struct node *head) {
     struct node *temp2 = head;
 
     // this for loop will take you to n-1 location to get the link proper
-    // remember it is staritng fromn 0 that is why it is
+    // remember it is staritng from 0 that is why it is
     // going till n-2 and not n-1
     // don't get confuse because of that
     for (int i = 0; i < (position - 2); i++) {
         temp2 = temp2->next;
     }
     // First save the value of (n-1)th node next field
-    // into our newly creted node->next field
+    // into our newly created node->next field
     // Then store the address of the newly created node
     // in to the (n-1)th->next field to get the link proper
     temp1->next = temp2->next;
@@ -111,7 +111,7 @@ struct node* delete(int position, struct node *head) {
     }
 
     // this for loop will take you to n-1 location to get the link proper
-    // remember it is staritng fromn 0 that is why it
+    // remember it is staritng from 0 that is why it
     // is going till n-2 and not n-1
     // don't get confuse because of that
     for (int i = 0; i < (position - 2); i++) {
@@ -137,6 +137,7 @@ struct node* reverse(struct node *head) {
     // to store the value of the next node to prevent loss of the address
     struct node* next;
 
+    // Initialising the current and previous
     current = head;
     prev = NULL;
 

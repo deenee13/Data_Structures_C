@@ -49,6 +49,7 @@ int merge_sort(int *arr, const int arr_value) {
     // another would be from mid to arr_value - 1
     left = (int*)malloc(mid*sizeof(int));
     right = (int*)malloc((arr_value - mid)*sizeof(int));
+
     // adding elements to the left subarray
     for (int i=0; i < mid; i++) {
         *(left+i) = *(arr+i);
@@ -59,13 +60,13 @@ int merge_sort(int *arr, const int arr_value) {
     }
     // Sorting the left subarray by dividing the array into single elements
     merge_sort(left, mid);
-    // Sorting the right subarray by dividng the array into songle elements
+    // Sorting the right subarray by dividng the array into single elements
     merge_sort(right, arr_value-mid);
     // merging the left and the right subarray into sorted array
     merge(arr, left, mid, right, arr_value-mid);
     // Free left subarray
     free(left);
-    // free right subarray
+    // Free right subarray
     free(right);
     return 0;
 }
@@ -87,12 +88,11 @@ int selection_sort(int *arr, const int arr_value) {
             // the index of the imin
             if ( *(arr+j) < *(arr+i) ) {
                 imin = j;
+                temp = *(arr+i);
+                *(arr+i) = *(arr+imin);
+                *(arr+imin) = temp;
             }
-        }
-        // As we come out of the for loop swap the element with the imin
-        temp = *(arr+i);
-        *(arr+i) = *(arr+imin);
-        *(arr+imin) = temp;
+       }
     }
     return 0;
 }
@@ -140,7 +140,8 @@ int bubble_sort(int *arr, const int arr_value) {
     // For loop from 1st element of the array to the last element
     for (int k=1; k <= (arr_value - 1); k++) {
         // For loop from the 0th element of the array to the value
-        // depending upon the k
+        // depending upon the k.
+        // This is done to prevent the out of bound access of array
         for (int i=0; i <= (arr_value - k -1); i++) {
             if (*(arr+i) > *(arr+i+1)) {
                 //// printf("in bubble_sort %d\n", *(arr+i+1));
@@ -168,7 +169,7 @@ int main(void) {
     for (int i=0; i < arr_value; i++) {
         scanf("%d", (arr + i));
     }
-    flag = merge_sort(arr, arr_value);
+    flag = selection_sort(arr, arr_value);
     printf("Elements in the array are:\n");
     for (int i=0; i < arr_value; i++) {
         printf("%d\n", *(arr + i));

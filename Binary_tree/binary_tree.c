@@ -27,7 +27,7 @@ This phenomena must be true for all the nodes*/
  * deleted node with the child of the deleted node
  * <CASE-3> Deleting a node with 2 children. In this we need to find approach tu reduce this
  * with the case-1 or case-2.
- * $step-1$ Find min node in the child of right subtree and fill itin with the deleted node
+ * $step-1$ Find min node in the child of right subtree and fill it in with the deleted node
  * hence we will now have 2 node with same value. Thus doing this we have reduced the problem 
  * to Case-2. Hence to delete the duplicate node follow Case-2 
  *  
@@ -231,6 +231,7 @@ void pre_order_traversal(struct bstnode* root) {
  *  the same level are read first from left to right and then
  *  goes to the lower level
  * 
+ * It is also call breadth first search algorithm and it works in the same way as BFS of tree
  * *************************************************************************************/
 void level_order_traversal(struct bstnode* root) {
     if (root == NULL) {
@@ -239,6 +240,9 @@ void level_order_traversal(struct bstnode* root) {
         /* code */
     }
 }
+
+// #define Function_name(arg1, arg2) ((arg1) <some operation> (arg2) ? (condition to execute) : (condition to execute else))
+#define MAX(a, b) ( (a) >= (b) ? a : b)
 
 
 int max(int a, int b) {
@@ -254,7 +258,7 @@ int max(int a, int b) {
 // Function to find the height of the tree
 int find_height(struct bstnode* root) {
     if (root == NULL) {
-        return (-1);
+        return (0);
     }
     /*
     else
@@ -269,7 +273,7 @@ return(( max(find_height(root->left), find_height(root->right)) + 1 ));
 }
 
 
-// Function to find maximum element in the  tree
+// Function to find maximum element in the tree
 int find_max(struct bstnode* root) {
     if (root == NULL) {
         printf("Tree is empty\n");

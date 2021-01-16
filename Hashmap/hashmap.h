@@ -3,6 +3,8 @@
 
 // This struct contains key and value along with the next field
 // to point to the valid node of hash
+
+// Change the data type of key depending upon the key you want
 struct node {
     unsigned int key;
     unsigned int value;
@@ -21,6 +23,5 @@ struct table {
 struct table *create_table(unsigned int size);
 
 int hash_code(struct table *t, int key);
-
 void insert(struct table *t, int key, int value);
 int lookup(struct table *t, int key);

@@ -2,8 +2,7 @@
 
 /* Function  for Queue*/
 
-void dequeue()
-{
+void dequeue() {
     // It is created to delete the memory from heap
     struct node* temp = front;
     if (front == NULL) {
@@ -12,21 +11,18 @@ void dequeue()
     if (front == rear) {
         front = NULL;
         rear = NULL;
-    }
-    else{
+    } else {
         front = front->next;
     }
     free(temp);
 }
 
-void enqueue(int x)
-{
+void enqueue(int x) {
     struct node* temp = (struct node*)malloc(sizeof(struct node*));
     temp->data = x;
     temp->next = NULL;
 
-    if(front == NULL && rear == NULL)
-    {
+    if (front == NULL && rear == NULL) {
         rear = temp;
         front = temp;
         return;
@@ -37,28 +33,20 @@ void enqueue(int x)
     rear = temp;
 }
 
-int isempty(void)
-{
-    if( front == NULL && rear == NULL)
-    {
+int isempty(void) {
+    if ( front == NULL && rear == NULL ) {
         return(1);
-    }
-    else
-    {
+    } else {
         return(0);
     }
-
 }
 
-int peek()
-{
+
+int peek() {
     // Check for the empty Queue
-    if(front != NULL)
-    {
+    if (front != NULL) {
         return(front->data);
-    }
-    else
-    {
+    } else {
         printf("Queue is empty exiting the code\n");
         exit(EXIT_FAILURE);
     }

@@ -9,7 +9,19 @@
         3) Top()   // Function to know the top element of stack
         4) Isempty()    // Function to know whether the stack is empty or not
 
-        We can implement stack using array and linked list 
+        We can implement stack using array and linked list in which we can remove and add the element from the head of the 
+        linked list as to remove and delete the element from the head has o(1) time complexity.
+        This is the reason I have not implemented it over here again.
+
+        Visit my code school to see application of the stack
+        Application: 
+        1) Stack can be used to reverse a linked list.
+        2) It can be used to check for the valid paranthesis and brackets. Also use to 
+        solve some mathematical operation using it
+        3) It can be used to reverse a linked list by storing the address of the node on to stack.
+        and then retreving one address and changing the link of it.
+        4) We can also print the linked list in reverse order using stack
+        5) It can also be used to check for prefix and the postfix application 
 
 **/
 
@@ -25,7 +37,6 @@ int arr[MAX_LENGTH];
 int top = -1;
 
 // Function to push element into stack
-
 void push(int x) {
     if (top == (MAX_LENGTH - 1)) {
         printf("Stack is full\n");
@@ -85,3 +96,64 @@ print();
 push(12);
 print();
 }
+
+
+/////////////////////////////
+//
+//
+// Implementation as linkedlist
+//
+/////////////////////////////
+
+struct node {
+    int value;
+    struct node *next;
+};
+
+void push(int x);
+void pop();
+
+bool isempty();
+int top_linkedlist();
+
+struct node* front = NULL;
+
+void push(int x) {
+
+    struct node *temp = (struct node*)malloc(sizeof(struct node));
+    temp->value = x;
+    temp->next = NULL;
+
+    if (front == NULL) {
+        front = temp;
+        return;
+    }
+
+    temp->next = front;
+    front = temp;
+}
+
+void pop() {
+    struct node *temp = front;
+
+    if (top == NULL) {
+        return;
+    } else {
+        front = front->next;
+    }
+    free(front);
+}
+
+bool isempty() {
+    if (top == NULL) {
+        return true;
+    }
+
+    return false;
+}
+
+int top_linkedlist() {
+    return (front->value);
+}
+
+

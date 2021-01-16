@@ -16,7 +16,7 @@
  *   This is a pointer to the array that function needs to sort
  * 
  * @param arr_value
- *   This is specifies the number of elements in the array 
+ *   This specifies the number of elements in the array 
  * 
  * @return
  *   <0 on error. Standard linux errno is set on errors.
@@ -30,7 +30,10 @@ int bubble_sort(int *arr, const int arr_value);
  * This API is will sort the array using the Insertion sort algorithm.
  * In which it divides the array into two parts. Sorted and Unsorted part.
  * In which we will pick up each element from the unsorted part and by merging
- * it with the sorted part elements we will arrange the sorted list  
+ * it with the sorted part elements we will arrange the sorted list 
+ * 
+ * Over here array element i is compare with i-1 elements and if 
+ * it is small then they are swapped 
  * 
  * @param arr
  *   This is a pointer to the array that function needs to sort
@@ -50,6 +53,9 @@ int insertion_sort(int *arr, const int arr_value);
  * This API is will sort the array using the Selection sort algorithm.
  * In which we compare the ith element with each and every other element
  * in the array if it is small we swap the element with the ith element 
+ * 
+ * Over here array element i is compared with each and every element index 
+ * greater than it
  * 
  * @param arr
  *   This is a pointer to the array that function needs to sort

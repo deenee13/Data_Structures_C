@@ -17,15 +17,14 @@
 
 /* Implementation of queue using linked list */
 
-struct node{
+typedef struct node {
     int data;
     struct node* next;
-};
+}queue;
 
 // Global Declaration
-struct node* front = NULL;
-struct node* rear = NULL;
-
+queue* front = NULL;
+queue* rear = NULL;
 
 
 // Function Declaration
@@ -37,7 +36,7 @@ void print();  // Function to print the linked list
 
 void dequeue() {
     // It is created to delete the memory from heap
-    struct node* temp = front;
+    queue* temp = front;
     int num;
 
     if (front == NULL) {
@@ -51,29 +50,55 @@ void dequeue() {
         front = front->next;
     }
     free(temp);
-    printf("Value of num: %d ", num);
+    printf("Value of num: %d\n", num);
 }
 
 
 void enqueue(int x) {
-    struct node* temp = (struct node*)malloc(sizeof(struct node*));
+    queue* temp = (struct node*)malloc(sizeof(struct node));
     temp->data = x;
     temp->next = NULL;
 
     if (front == NULL && rear == NULL) {
+        // Remember storing the address of temp in both rear and front.
+        // Hence we can access node by modifying both of them.
         rear = temp;
         front = temp;
         return;
     }
 
     // Try to implement this logic on paper and it will be more clear
+    // Updating the next field of the specific node as rear points to the
+    // Address of the last node in the linked list
+
+    // making the link for the queue
+    // So that front can use it to remove element from the queue
     rear->next = temp;
+    // Updating the value of the rear to point it to the end of the linked list
     rear = temp;
+}
+
+int isempty(void) {
+    if ( front == NULL && rear == NULL ) {
+        return(1);
+    } else {
+        return(0);
+    }
+}
+
+
+int peek() {
+    // Check for the empty Queue
+    if (front != NULL) {
+        return(front->data);
+    } else {
+        printf("Queue is empty exiting the code\n");
+        exit(EXIT_FAILURE);
+    }
 }
 
 // Function to print the linked list
 void print() {
-    struct node* temp = front;
     printf("List:");
     while (front != NULL) {
         printf(" %d ", front->data);

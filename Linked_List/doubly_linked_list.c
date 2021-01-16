@@ -43,11 +43,19 @@ struct node* insert_head(int x, struct node* head) {
     }
 
     /* Due to this line above if statement is important 
-     as this is not there in sinle linked list. Above if statement
+     as this is not there in single linked list. Above if statement
      in single linked list can be eliminated */
+
+    // As head is pointing to the first location in the list
+    // By doing this we are storing the address of the new node
+    // in the previous space to build reverse link
     head->prev = newnode;
 
+    // By doing this I am building the forward link by storing previous 1st node
+    // address in the newnode next location
     newnode->next = head;
+
+    // Then changing the address of the head with newnode
     head = newnode;
     //// printf("Out of Insert head function\n");
     return(head);
