@@ -1,139 +1,5 @@
-#include <stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include <stdbool.h>
 
 
-struct node {
-  int data;
-  struct node *next;
-};
-
-void enqueue(int x);
-void dequeue();
-int peek();
-bool isempty();
-
-struct node *front = NULL;
-struct node *rear = NULL;
-
-void enqueue(int x) {
-struct node *newnode = (struct node*)malloc(sizeof(struct node));
-newnode->data = x;
-newnode->next = NULL;
-
-if (front == NULL && rear == NULL) {
-    front = newnode;
-    rear = newnode;
-    return;
-  }
-
-rear->next = newnode;
-rear = newnode;
-}
-
-void dequeue() {
-
-  if (front == NULL && rear == NULL) {
-    return;
-  } else if (front == rear) {
-    printf("Queeu is full\n");
-  } else {
-
-    struct node *temp = front;
-    front = front->next;
-    free (front);
-  }
-}
-
-bool isempty() {
-
-  if (front == NULL && rear == NULL) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-int top() {
-  if (front != NULL) {
-    return front->data;
-  }
-}
-
-
-
-int main() {
-
-
-    char i = 'A';
-    int temp = 0;
-    temp = (i - '0');
-    printf("Value of i is  %d\n", temp);
-    /*
-    uint32_t value = 0x12345678;
-    uint8_t *ptr = &value;
-    printf("Address of ptr is %0X\n", ptr);
-    printf("Data in ptr is %0X\n", *ptr);
-    ////ptr++;
-    printf("Address of incremented ptr is %0X\n", ptr + 1);
-    uint32_t command;
-    command = *((uint32_t*)ptr);
-    int n = 18;
-    n = n & 0x55555555;
-    printf("Value of *ptr is %0X\n", command);
-    */
-}
-
-
-#if 0
-void big_little_endian() {
-    unsigned int value;
-    value = 0x12345678;
-
-    char *ptr;
-
-    ptr = (char*)&value;
-
-    if (*ptr == 0x78) {
-        printf("Big Endian\n");
-    } else if (*ptr == 0X12) {
-        printf("Little endian\n");
-    } else {
-        printf("Error finding Endian");
-    }
-}
-#endif
-
-
-/****************************************
-//
-//
-//
-// Logic to swap endianess for future use
-//
-//
-****************************************/
- 
-/*
-unsigned int swap_endianess(unsigned int value) {
-    char *ptr;
-    ptr = (char*) &value;
-
-    for ( int i = 0; i < sizeof(unsigned int); i++ ) {
-        push (*( ptr + i));
-    }
-
-    for ( int i = 0; i < sizeof(unsigned int); i++ ) {
-        *(ptr + i) = pop();
-    }
-
-    return(value);
-}
-*/
-
-
-#if 0
 // Location where DMA will read data from
 //// BUG: It should be from where it will write data
 uint32_t *DMA_BUFF_SEND_ADDR = 0xDEADBEEF;
@@ -241,9 +107,9 @@ StatusRegister.bytes.hb = 0xAA;
 printf("0x%.08x", StatusRegister.val) // 0xAAFF; 
 
 struct fields {
-    uint8_t enable:1; 
-    uint8_t mode: 2; 
-    uint8_t unused:5
+  uint8_t enable:1; 
+  uint8_t mode: 2; 
+  uint8_t unused:5
 }
 
 fields.enable = 1; 
@@ -260,13 +126,13 @@ struct _bytes {
 };
 
 union StatusRegister {
-    struct _bits {
-        uint8_t enable:1; 
-        uint8_t mode: 2; 
-        uint8_t unused:5;
-    }bits;
-    struct _bytes bytes;
-    uint16_t val;
+  struct _bits {
+    uint8_t enable:1; 
+    uint8_t mode: 2; 
+    uint8_t unused:5;
+  } bits;
+  struct _bytes bytes;
+  uint16_t val;
 };
 
 int main(void) {
@@ -285,7 +151,7 @@ int main(void) {
 
   return 0;
 }
-#endif
+
 
 
 

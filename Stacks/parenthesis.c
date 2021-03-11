@@ -4,7 +4,6 @@
 #include <stdbool.h>
 
 struct node {
-    
     char bracket;
     struct node *next;
 };
@@ -14,14 +13,12 @@ void push(char s);
 void pop();
 
 void push (char s) {
-    
+
     printf("In push funtion\n");
     struct node *newnode = (struct node*)malloc(sizeof(struct node));
     newnode->bracket = s;
     newnode->next = top;
-
     top = newnode;
-
 }
 
 char is_top() {
@@ -56,7 +53,7 @@ void pop() {
 
 bool are_balanced (char opening, char closing) {
     printf("In are_balanced funtion\n");
-    if (opening == ')' && closing == '(') { 
+    if (opening == ')' && closing == '(') {
             return true;
     } else if (opening == '}' && closing == '{') {
             return true;

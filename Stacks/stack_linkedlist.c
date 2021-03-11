@@ -41,9 +41,9 @@ return false;
 
 int top() {
     if (front == NULL) {
-        return true;
-    } else {
         return false;
+    } else {
+        return (front->data);
     }
 }
 

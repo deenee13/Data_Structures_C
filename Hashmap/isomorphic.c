@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 // Change the data type of key depending upon the key you want
 struct node {
@@ -70,7 +71,7 @@ bool insert(struct table *t, int key, int value) {
         if (temp->key == key) {
             if (temp->value != value) {
                 return false;
-            }    
+            }
         }
         temp = temp->next;
     }
@@ -88,36 +89,33 @@ bool insert(struct table *t, int key, int value) {
 
     // Updating the array of heads
     t->list[position] = newnode;
-    
+
     return true;
 }
 
 
 
 bool isIsomorphic(char * s, char * t) {
-    
-    if ( s == NULL || t == NULL) {
-        
+
+    if (s == NULL || t == NULL) {
+
         return false;
     }
-    
+
     struct table *structure = create_table(5);
     int i = 0;
     int rc = 0;
-    
     while (*(s + i) != '\0' && *(t + i) != '\0') {
-        
         rc = insert(structure, *(s + i), *(t + i));
-        
+
         if (rc == false) {
             return false;
         }
-        
+
         //// I Think I forgot to implemented this
         //// due to which I was getting stuck in the
         //// While loop
         i++;
     }
     return true;
-
 }

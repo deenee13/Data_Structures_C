@@ -96,6 +96,6 @@ int main() {
     head = insert_head(1, head);  // Expected output: 1
     head = insert_head(2, head);  // Expected output: 2 1
     head = insert_head(3, head);  // Expected output: 3 2 1
-    print_forward(head);        // Expected output: 3 2 1
-    print_reverse(head);        // Expected output: 1 2 3
+    print_forward(head);          // Expected output: 3 2 1
+    print_reverse(head);          // Expected output: 1 2 3
 }

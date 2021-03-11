@@ -79,7 +79,6 @@ void bfs(int i, struct node** head, int* visited) {
                 // Mark it visited in the
                 *(visited + p->data) = 1;
             }
-
             // Move forward in the list
             p = p->next;
         }

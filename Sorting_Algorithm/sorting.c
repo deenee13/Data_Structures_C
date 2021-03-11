@@ -8,7 +8,7 @@ void merge(int *array, int *left, int left_count, int *right, int right_count) {
     // to keep the index of the sorted array
     int k = 0;
 
-    // This while loop will run untill one of the subaray gets exhausted
+    // This while loop will run until one of the subaray gets exhausted
     while (i < left_count && j < right_count) {
         if (*(left+i) < *(right+j)) {
             *(array+k) = *(left+i);
@@ -144,7 +144,6 @@ int bubble_sort(int *arr, const int arr_value) {
         // This is done to prevent the out of bound access of array
         for (int i=0; i <= (arr_value - k -1); i++) {
             if (*(arr+i) > *(arr+i+1)) {
-                //// printf("in bubble_sort %d\n", *(arr+i+1));
                 // Swapping algorithm
                 temp = *(arr+i);
                 *(arr+i) = *(arr+i+1);

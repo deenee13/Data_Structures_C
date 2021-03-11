@@ -29,7 +29,8 @@ struct node* merge_two_lists(struct node* l1, struct node* l2);
 
 
 
-
+// This solution of merging will work provided both the
+// list are sorted.
 struct node* merge_two_lists(struct node* l1, struct node* l2) {
     // Creating a new temp variabe to merge the list
     struct node* temp = NULL;
@@ -192,6 +193,7 @@ void print(struct node*head) {
 
 // You could also take values from the user
 int main() {
+    
     int position;
 
     struct node *head = NULL;    // empty list
@@ -204,8 +206,9 @@ int main() {
     head = insert(3, 2, head);    // list: 2,3
     head = insert(4, 1, head);    // list: 4,2,3
     head = insert(5, 2, head);    // list: 4,5,2,3
-    printf("Complete linked list before deletion\n");
     */
+    printf("Complete linked list before deletion\n");
+    
     print(head);
 
     // Reversing a linked list

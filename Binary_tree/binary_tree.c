@@ -23,7 +23,7 @@ This phenomena must be true for all the nodes*/
  * To Delete a node from Tree we need to fist break the link and then free the memory in Heap
  * 
  * <CASE-1> Deleting a leaf node is easy as you just need to break the link and free memory  
- * <CASE-2> Deleing a node with 1 child in this we simply need to link the parent of the
+ * <CASE-2> Deleting a node with 1 child in this we simply need to link the parent of the
  * deleted node with the child of the deleted node
  * <CASE-3> Deleting a node with 2 children. In this we need to find approach tu reduce this
  * with the case-1 or case-2.
@@ -99,9 +99,6 @@ bool is_bst_util(struct bstnode* root, int min_value, int max_value) {
         return false;
     }
 }
-
-
-
 
 
 bool is_subtree_greater(struct bstnode* root, int data) {
@@ -234,14 +231,22 @@ void pre_order_traversal(struct bstnode* root) {
  * It is also call breadth first search algorithm and it works in the same way as BFS of tree
  * *************************************************************************************/
 void level_order_traversal(struct bstnode* root) {
+    struct bstnode* temp;
     if (root == NULL) {
         return;
     } else {
-        /* code */
+        enqueue(root);
+        while (!isempty()) {
+            temp = (struct btsnode*)peek();
+            if (temp->left != NULL) enqueue(temp->left);
+            if (temp->right != NULL) enqueue(temp->right);
+            dequeue();
+            printf("%d\n", root->data);
+        }
     }
 }
 
-// #define Function_name(arg1, arg2) ((arg1) <some operation> (arg2) ? (condition to execute) : (condition to execute else))
+// #define Function_name(arg1, arg2) ((arg1) <some operation> (arg2) ? (if condition to execute) : (condition to execute else))
 #define MAX(a, b) ( (a) >= (b) ? a : b)
 
 
@@ -260,7 +265,6 @@ int find_height(struct bstnode* root) {
     if (root == NULL) {
         return (0);
     }
-    /*
     else
     {
         int left_side = find_height(root->left);
@@ -268,7 +272,7 @@ int find_height(struct bstnode* root) {
         printf("Value of left side:%d\n",left_side);
         printf("Value of right side:%d\n",right_side);
     }
-    */
+    
 return(( max(find_height(root->left), find_height(root->right)) + 1 ));
 }
 

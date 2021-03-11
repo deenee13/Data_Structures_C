@@ -19,7 +19,7 @@
 
 typedef struct node {
     int data;
-    struct node* next;
+    struct queue* next;
 }queue;
 
 // Global Declaration
@@ -30,6 +30,8 @@ queue* rear = NULL;
 // Function Declaration
 void enqueue(int x);  // To add element from the queue
 void dequeue();  // To remove element from the queue
+int isempty(void);
+int peek();
 void print();  // Function to print the linked list
 
 
@@ -55,7 +57,7 @@ void dequeue() {
 
 
 void enqueue(int x) {
-    queue* temp = (struct node*)malloc(sizeof(struct node));
+    queue* temp = (struct node*)malloc(sizeof(queue));
     temp->data = x;
     temp->next = NULL;
 
