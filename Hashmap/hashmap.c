@@ -13,7 +13,6 @@ struct table *create_table(unsigned int size) {
 
     // For loop to make them NULL
     for (int i = 0; i < size; i++) {
-        // Doubt ask mamu
         t->list[i] = NULL;
     }
     return t;
@@ -89,3 +88,4 @@ int main(void) {
     printf("%d\n", lookup(t, 5));
     return 0;
 }
+

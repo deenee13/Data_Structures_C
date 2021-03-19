@@ -36,7 +36,7 @@ struct bstnode* delete_node(struct bstnode* root, int data) {
     if (root == NULL) {
         return (root);
     } else if (data < root->data) {
-         // recursive approach to find the particular node to delete it
+        // recursive approach to find the particular node to delete it
         root->left = delete_node(root->left, data);
     } else if (data > root->data) {
         root->right = delete_node(root->right, data);
@@ -153,7 +153,7 @@ bool is_binary_search_tree(struct bstnode* root) {
         return true;
     }
 
-    if ( is_subtree_lesser(root->left, root->data) &&
+    if (is_subtree_lesser(root->left, root->data) &&
         is_subtree_greater(root->right, root->data) &&
         is_binary_search_tree(root->left) &&
         is_binary_search_tree(root->right)) {

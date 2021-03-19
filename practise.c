@@ -8,77 +8,12 @@
 
 #define sizeofdeep(type) (char*)(&type+1) - (char*)(&type)
 
-struct node {
-    int data;
-    struct node* next;
-};
-
-void enqueue(int data);
-void dequeue();
-int top();
-bool isempty();
-
-struct node* front = NULL;
-struct node* rear = NULL;
-
-void enqueue(int data) {
-
-    struct node* newnode = (struct node*)malloc(sizeof(struct node));
-    newnode->data = data;
-    newnode->next = NULL;
-
-    if (front == NULL && rear == NULL) {
-        front = newnode;
-        rear = newnode;
-        return;
+void find_duplicate(int* arr, int length) {
+    int result;
+    for (int i = 0; i < length; i++) {
+        result ^= arr[i];
     }
-
-    rear->next = newnode;
-    rear = newnode;
-}
-
-void dequeue() {
-
-    struct node* temp = front;
-
-    if (front == NULL) {
-        return;
-    }
-
-    if (front == rear) {
-        front = NULL;
-        rear = NULL;
-    } else {
-        front = front->next;
-    }
-    free(temp);
-}
-
-int peek() {
-
-    if (front != NULL) {
-        return front->data;
-    } else {
-        printf("Queue is empty\n");
-        exit(EXIT_FAILURE);
-    }
-}
-
-bool isempty() {
-    if (front == NULL && rear == NULL) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-void print() {
-    printf("List:");
-    while (front != NULL) {
-        printf(" %d ", front->data);
-        front = front->next;
-    }
-    printf("\n");
+    printf("value is %d",result);
 }
 
 int main(void) {
@@ -104,11 +39,6 @@ int main(void) {
     printf("address of ptr is %d value is %d and &var = %d\n", &ptr, ptr, &var);
     // printf("value of i is %d and ++i %d", i, ++i);
     */
-    enqueue(10);
-    enqueue(20);
-    enqueue(30);
-    enqueue(40);
-    enqueue(50);
-    dequeue();
-    print();  // Expected output = 20 30 40 50
+   int arr[6] = {1,3,3,4,4,5};
+   find_duplicate(arr, 6);
 }
